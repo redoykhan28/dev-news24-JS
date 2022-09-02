@@ -120,7 +120,7 @@ const displayNews = postNews => {
             </div>
 
           <div class="my-lg-5 py-lg-2">
-          <a href="#" class="fs-3 text-primary"><i class="fa-sharp fa-solid fa-arrow-right"></i></a>
+          <a href="#" class="fs-3 text-primary" onclick="newsDetails('${news._id}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-sharp fa-solid fa-arrow-right"></i></a>
           </div>
         
         </div>
@@ -130,6 +130,35 @@ const displayNews = postNews => {
         parentDiv.appendChild(childDiv);
 
     }
+
+}
+
+//load news Details
+const newsDetails = async details => {
+
+    try {
+
+
+        let url = `https://openapi.programming-hero.com/api/news/${details}`;
+
+        // console.log(url)
+
+        const res = await fetch(url);
+        let data = await res.json();
+        displayNewsDetails(data.data);
+
+    }
+
+
+    catch (error) {
+
+        console.log(error);
+    }
+
+}
+
+const displayNewsDetails = fullDetails => {
+
 
 }
 
