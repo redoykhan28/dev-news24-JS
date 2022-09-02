@@ -27,7 +27,6 @@ const displayCatagories = catagories => {
     let parentDiv = document.getElementById('CatagoryNav');
 
     //create a child and append into parent
-
     for (const catagory of catagories) {
 
         let childDiv = document.createElement('div')
@@ -67,13 +66,16 @@ const loadNewsByCat = async allNews => {
 
 }
 
-//display news underevery catagories
+//display news under every catagories
 const displayNews = postNews => {
 
-    console.log(postNews)
+    // console.log(postNews)
+
+    //call parent div
     let parentDiv = document.getElementById('news');
     parentDiv.textContent = ''
 
+    //create a child and append into parent
     for (const news of postNews) {
 
         let childDiv = document.createElement('div');
@@ -81,36 +83,52 @@ const displayNews = postNews => {
 
         childDiv.innerHTML =
             `
+            <hr class="p-3">
+
         <div class="col-md-4 my-3">
         <img class="img-fluid" src="${news.thumbnail_url}" alt="image">
         </div>
         <div class="col-md-8 my-3">
         <h4>${news.title}..</h4>
-        <p class="text-muted my-4">${news.details.slice(0, 320)}...</p>
+        <p class="text-muted my-4">${news.details.slice(0, 320)}... </p>
         
-        <div class="row my-4">
-        <div class="col-md-4">
-            <div class="row my-5">
-                <div class="col-md-6">
-                <img class="img-fluid w-25 rounded-circle" src="${news.author.img}" alt="author_img">
-                </div>
-                <div class="col-md-6">
+        <div class="d-flex justify-content-between my-4">
+        
+        <div class="my-lg-5 py-lg-2">
+        <h5 class="class=" mx-2><i class="fa-solid fa-eye"></i>
+         ${news.total_view}</h5> 
+        </div>
+        
+        
+            <h5 class="py-lg-2 my-lg-5 d-none d-lg-inline">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+            
+            </h5> 
 
+        <div class="d-flex my-lg-5">
+                <div>
+                <img class="img-fluid img rounded-circle" src="${news.author.img}" alt="author_img">
+                </div>
+                <div>
+                    <p class="fw-bold mx-2 my-0">${news.author.name}</p>
+                    <small class="text-muted mx-2 my-0">${news.author.published_date}
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
 
-        </div>
-        <div class="col-md-4">
-
-        </div>
-    </div>
-        </div>
+          <div class="my-lg-5 py-lg-2">
+          <a href="#" class="fs-3 text-primary"><i class="fa-sharp fa-solid fa-arrow-right"></i></a>
+          </div>
         
+        </div>
+        </div>
         `
 
         parentDiv.appendChild(childDiv);
+
     }
 
 }
