@@ -58,6 +58,7 @@ const loadNewsByCat = async allNews => {
         let data = await res.json();
         displayNews(data.data);
 
+
     }
 
     catch (error) {
@@ -65,12 +66,30 @@ const loadNewsByCat = async allNews => {
         console.log(error);
     }
 
+
 }
 
 //display news under every catagories
 const displayNews = postNews => {
 
-    // console.log(postNews)
+    console.log(postNews)
+
+    //alert if no phone found
+    let text = document.getElementById('error');
+    if (postNews.length === 0) {
+
+        text.classList.remove('d-none')
+
+    }
+
+    else {
+
+        text.classList.add('d-none')
+    }
+
+    //number of news per catagory
+    let catNumber = document.getElementById('items');
+    catNumber.innerText = `${postNews.length} numbers of items in this catagory`;
 
     //call parent div
     let parentDiv = document.getElementById('news');
@@ -130,7 +149,10 @@ const displayNews = postNews => {
 
         parentDiv.appendChild(childDiv);
 
+
+
     }
+
 
     //loader ends
     loading(false)
