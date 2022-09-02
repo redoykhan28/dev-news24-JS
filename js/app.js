@@ -45,7 +45,8 @@ const displayCatagories = catagories => {
 //load news according to catagories
 const loadNewsByCat = async allNews => {
 
-
+    //loader start
+    loading(true);
 
     try {
 
@@ -131,6 +132,9 @@ const displayNews = postNews => {
 
     }
 
+    //loader ends
+    loading(false)
+
 }
 
 //load news Details
@@ -157,18 +161,66 @@ const newsDetails = async details => {
 
 }
 
-const displayNewsDetails = detail => {
+const displayNewsDetails = details => {
 
-    console.log(detail)
+    // console.log(details)
 
-    let parentDiv = document.getElementById('body');
 
-    parentDiv.innerHTML =
-        `
-    <img  src="${detail.img}" alt="image">
+    for (const detail of details) {
 
-    
-    `
+        let p = document.getElementById('body');
+        p.innerHTML =
+            `
+       <img src="${detail.image_url}" class="img-fluid w-100 mx-auto" alt="image">
+
+       <h5 class="my-3 fw-bold">${detail.title}</h5>
+
+       <p class="text-muted">${detail.details}</p>
+
+       <div class="d-flex justify-content-between mt-5">
+       
+       <div>
+       
+       <h5 class="class=" mx-2><i class="fa-solid fa-eye"></i>
+       <span class="text-primary"> ${detail.total_view}</span></h5> 
+
+       </div>
+
+       <h5>Rating: <span class="text-primary">${detail.rating.number}</span></h5>
+
+       </div>
+
+       <div class="d-flex justify-content-start mt-5">
+                <div>
+                <img class="img-fluid img rounded-circle" src="${detail.author.img}" alt="author_img">
+                </div>
+                
+                <div>
+                    <p class="fw-bold mx-2 my-0 text-primary">By ${detail.author.name}</p>
+                    <small class="text-muted mx-2 my-0">${detail.author.published_date}
+                </div>
+
+            </div>
+       
+       `
+
+    }
+
+}
+
+//function for loader
+const loading = load => {
+
+    let spin = document.getElementById('spin');
+
+    if (load) {
+
+        spin.classList.remove('d-none');
+    }
+    else {
+
+        spin.classList.add('d-none')
+    }
 
 }
 
