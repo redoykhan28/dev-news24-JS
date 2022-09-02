@@ -157,8 +157,18 @@ const newsDetails = async details => {
 
 }
 
-const displayNewsDetails = fullDetails => {
+const displayNewsDetails = detail => {
 
+    console.log(detail)
+
+    let parentDiv = document.getElementById('body');
+
+    parentDiv.innerHTML =
+        `
+    <img  src="${detail.img}" alt="image">
+
+    
+    `
 
 }
 
