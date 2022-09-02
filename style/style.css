@@ -1,0 +1,22 @@
+body {
+
+    margin: 0;
+}
+
+hr {
+
+    margin-top: 80px;
+}
+
+.catagory a {
+
+    text-decoration: none;
+
+}
+
+.catagory a:hover {
+
+    text-decoration: underline;
+    color: black;
+
+}
