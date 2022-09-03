@@ -119,12 +119,12 @@ const displayNews = postNews => {
         <img class="img-fluid" src="${news.thumbnail_url ? news.thumbnail_url : "no thumbnail image"}" alt="image">
         </div>
         <div class="col-md-8 my-3">
-        <h4>${news.title ? news.title : "No title"}..</h4>
+        <h4>${news.title ? news.title : "No title"}</h4>
         <p class="text-muted my-4">${news.details.slice(0, 320) ? news.details.slice(0, 320) : "No details"}... </p>
         
         <div class="d-flex justify-content-between my-4">
         
-        <div class="my-lg-5 py-lg-2">
+        <div class=" my-3 my-lg-5 py-lg-2">
         <h5 class="class=" mx-2><i class="fa-solid fa-eye"></i>
          ${news.total_view ? news.total_view : "No view"}</h5> 
         </div>
@@ -149,7 +149,7 @@ const displayNews = postNews => {
                 </div>
             </div>
 
-          <div class="my-lg-5 py-lg-2">
+          <div class="my-3 my-lg-5 py-lg-2">
           <a href="#" class="fs-3 text-primary" onclick="newsDetails('${news._id}')" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-sharp fa-solid fa-arrow-right"></i></a>
           </div>
         

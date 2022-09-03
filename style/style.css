@@ -11,13 +11,15 @@ hr {
 .catagory a {
 
     text-decoration: none;
-
+    transition: transform 2s ease-in;
 }
 
 .catagory a:hover {
 
     text-decoration: underline;
-    color: black;
+    font-weight: bold;
+    transform: scale(0.1);
+
 
 }
 
