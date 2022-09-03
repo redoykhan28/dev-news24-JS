@@ -145,7 +145,7 @@ const displayNews = postNews => {
                 </div>
                 <div>
                     <p class="fw-bold mx-2 my-0">${news.author.name ? news.author.name : "No author data"}</p>
-                    <small class="text-muted mx-2 my-0">${news.author.published_date ? news.author.published_date : "no date data"}
+                    <small class="text-muted mx-2 my-0">${news.author.published_date ? news.author.published_date : "no publised data"}
                 </div>
             </div>
 
@@ -226,7 +226,7 @@ const displayNewsDetails = details => {
                 
                 <div>
                     <p class="fw-bold mx-2 my-0 text-primary">By ${detail.author.name ? detail.author.name : "No author data"}</p>
-                    <small class="text-muted mx-2 my-0">${detail.author.published_date ? detail.author.published_date : "No date data"}
+                    <small class="text-muted mx-2 my-0">${detail.author.published_date ? detail.author.published_date : "No published data"}
                 </div>
 
             </div>
