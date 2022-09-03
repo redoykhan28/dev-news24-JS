@@ -97,6 +97,14 @@ const displayNews = postNews => {
     let parentDiv = document.getElementById('news');
     parentDiv.textContent = ''
 
+
+    //sorting the news according to view
+    postNews.sort(function (a, b) {
+
+        return b.total_view - a.total_view
+
+    })
+
     //create a child and append into parent
     postNews.forEach(news => {
 
@@ -108,17 +116,17 @@ const displayNews = postNews => {
             <hr class="p-3">
 
         <div class="col-md-4 my-3">
-        <img class="img-fluid" src="${news.thumbnail_url}" alt="image">
+        <img class="img-fluid" src="${news.thumbnail_url ? news.thumbnail_url : "no thumbnail image"}" alt="image">
         </div>
         <div class="col-md-8 my-3">
-        <h4>${news.title}..</h4>
-        <p class="text-muted my-4">${news.details.slice(0, 320)}... </p>
+        <h4>${news.title ? news.title : "No title"}..</h4>
+        <p class="text-muted my-4">${news.details.slice(0, 320) ? news.details.slice(0, 320) : "No details"}... </p>
         
         <div class="d-flex justify-content-between my-4">
         
         <div class="my-lg-5 py-lg-2">
         <h5 class="class=" mx-2><i class="fa-solid fa-eye"></i>
-         ${news.total_view}</h5> 
+         ${news.total_view ? news.total_view : "No view"}</h5> 
         </div>
         
         
@@ -133,11 +141,11 @@ const displayNews = postNews => {
 
         <div class="d-flex my-lg-5">
                 <div>
-                <img class="img-fluid img rounded-circle" src="${news.author.img}" alt="author_img">
+                <img class="img-fluid img rounded-circle" src="${news.author.img ? news.author.img : "No image"}" alt="author_img">
                 </div>
                 <div>
-                    <p class="fw-bold mx-2 my-0">${news.author.name}</p>
-                    <small class="text-muted mx-2 my-0">${news.author.published_date}
+                    <p class="fw-bold mx-2 my-0">${news.author.name ? news.author.name : "No author data"}</p>
+                    <small class="text-muted mx-2 my-0">${news.author.published_date ? news.author.published_date : "no date data"}
                 </div>
             </div>
 
@@ -192,33 +200,33 @@ const displayNewsDetails = details => {
         let p = document.getElementById('body');
         p.innerHTML =
             `
-       <img src="${detail.image_url}" class="img-fluid w-100 mx-auto" alt="image">
+       <img src="${detail.image_url ? detail.image_url : "No image Found"}" class="img-fluid w-100 mx-auto" alt="image">
 
-       <h5 class="my-3 fw-bold">${detail.title}</h5>
+       <h5 class="my-3 fw-bold">${detail.title ? detail.title : "No title"}</h5>
 
-       <p class="text-muted">${detail.details}</p>
+       <p class="text-muted">${detail.details ? detail.details : "No details"}</p>
 
        <div class="d-flex justify-content-between mt-5">
        
        <div>
        
        <h5 class="class=" mx-2><i class="fa-solid fa-eye"></i>
-       <span class="text-primary"> ${detail.total_view}</span></h5> 
+       <span class="text-primary"> ${detail.total_view ? detail.total_view : "No view"}</span></h5> 
 
        </div>
 
-       <h5>Rating: <span class="text-primary">${detail.rating.number}</span></h5>
+       <h5>Rating: <span class="text-primary">${detail.rating.number ? detail.rating.number : "No ratings"}</span></h5>
 
        </div>
 
        <div class="d-flex justify-content-start mt-5">
                 <div>
-                <img class="img-fluid img rounded-circle" src="${detail.author.img}" alt="author_img">
+                <img class="img-fluid img rounded-circle" src="${detail.author.img ? detail.author.img : "No image"}" alt="author_img">
                 </div>
                 
                 <div>
-                    <p class="fw-bold mx-2 my-0 text-primary">By ${detail.author.name ? detail.author.name : "No data"}</p>
-                    <small class="text-muted mx-2 my-0">${detail.author.published_date}
+                    <p class="fw-bold mx-2 my-0 text-primary">By ${detail.author.name ? detail.author.name : "No author data"}</p>
+                    <small class="text-muted mx-2 my-0">${detail.author.published_date ? detail.author.published_date : "No date data"}
                 </div>
 
             </div>
