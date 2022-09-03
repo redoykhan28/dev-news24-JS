@@ -7,7 +7,6 @@ const loadCatagory = async () => {
         const res = await fetch(url);
         let data = await res.json();
         displayCatagories(data.data.news_category);
-
     }
 
     catch (error) {
@@ -27,7 +26,7 @@ const displayCatagories = catagories => {
     let parentDiv = document.getElementById('CatagoryNav');
 
     //create a child and append into parent
-    for (const catagory of catagories) {
+    catagories.forEach(catagory => {
 
         let childDiv = document.createElement('div')
         childDiv.innerHTML =
@@ -38,7 +37,7 @@ const displayCatagories = catagories => {
 
         parentDiv.appendChild(childDiv);
 
-    }
+    });
 
 }
 
@@ -48,16 +47,19 @@ const loadNewsByCat = async allNews => {
     //loader start
     loading(true);
 
+
+
     try {
 
         let url = `https://openapi.programming-hero.com/api/news/category/${allNews}`;
+
+        ;
 
         // console.log(url)
 
         const res = await fetch(url);
         let data = await res.json();
         displayNews(data.data);
-
 
     }
 
@@ -89,14 +91,14 @@ const displayNews = postNews => {
 
     //number of news per catagory
     let catNumber = document.getElementById('items');
-    catNumber.innerText = `${postNews.length} numbers of items in this catagory`;
+    catNumber.innerText = `${postNews.length} news found in this catagory`;
 
     //call parent div
     let parentDiv = document.getElementById('news');
     parentDiv.textContent = ''
 
     //create a child and append into parent
-    for (const news of postNews) {
+    postNews.forEach(news => {
 
         let childDiv = document.createElement('div');
         childDiv.classList.add('row');
@@ -151,7 +153,7 @@ const displayNews = postNews => {
 
 
 
-    }
+    });
 
 
     //loader ends
@@ -186,10 +188,7 @@ const newsDetails = async details => {
 const displayNewsDetails = details => {
 
     // console.log(details)
-
-
-    for (const detail of details) {
-
+    details.forEach(detail => {
         let p = document.getElementById('body');
         p.innerHTML =
             `
@@ -218,15 +217,14 @@ const displayNewsDetails = details => {
                 </div>
                 
                 <div>
-                    <p class="fw-bold mx-2 my-0 text-primary">By ${detail.author.name}</p>
+                    <p class="fw-bold mx-2 my-0 text-primary">By ${detail.author.name ? detail.author.name : "No data"}</p>
                     <small class="text-muted mx-2 my-0">${detail.author.published_date}
                 </div>
 
             </div>
        
        `
-
-    }
+    });
 
 }
 
@@ -246,5 +244,8 @@ const loading = load => {
 
 }
 
-
+//display news by default in home page
+loadNewsByCat('01')
+//display catagories menu
 loadCatagory();
+
